@@ -1,0 +1,31 @@
+sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y && sudo apt-get autoremove
+
+IF Hyper-V Guest then Run Following
+
+sudo chmod 666 /etc/initramfs-tools/modules
+sudo echo 'hv_vmbus' >> /etc/initramfs-tools/modules
+sudo echo 'hv_storvsc' >> /etc/initramfs-tools/modules
+sudo echo 'hv_blkvsc' >> /etc/initramfs-tools/modules
+sudo echo 'hv_netvsc' >> /etc/initramfs-tools/modules
+sudo chmod 644 /etc/initramfs-tools/modules
+
+sudo apt -y install linux-virtual linux-cloud-tools-virtual linux-tools-virtual
+
+sudo update-initramfs -u
+
+END IF
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg -x http://10.128.136.19:8080 | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt update && sudo apt remove docker docker-engine docker.io -y && sudo apt install apt-transport-https ca-certificates curl software-properties-common docker-ce -y
+sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose -x http://10.128.136.19:8080 && sudo chmod +x /usr/local/bin/docker-compose
+sudo usermod -aG docker $USER
+
+sudo reboot now
+
+
+sudo mkdir -p /var/docker/Data/Databases/Graylog
+sudo mkdir -p /var/docker/Config/Services/Graylog
+sudo mkdir -p /var/docker/Config/Administration/Portainer
+sudo mkdir -p /var/docker/Config/Administration/Watchtower
+sudo mkdir -p /var/docker/Data/Administration/Portainer
