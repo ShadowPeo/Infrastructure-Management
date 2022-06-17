@@ -1,0 +1,55 @@
+#Block/Limit password guessing attacks - Block those who have tried 10 passwords in 60 (1 Minute) seconds, for 600 seconds (10 Minutes)
+login block-for 600 attempts 10 within 60
+
+#Limit the password attempts per connection to 3
+ip ssh authentication-retries 3
+
+#Set the timeout for SSH (on the login screen) to 60 seconds
+ip ssh time-out 60
+
+#Log login failure
+login on-failure log
+
+#Limit SSH attempts to the Local Network Only
+ip access-list extended ACL-SSH-PERMIT
+ permit ip 10.0.0.0 0.255.255.255 any
+ deny  ip any any
+
+#Apply the ACL to the SSH connections
+ line vty 0 4
+ access-class ACL-SSH-PERMIT in vrf-also
+ session-timeout 10 
+ exec-timeout 15 0
+ transport input ssh
+ transport output ssh
+
+#Generate SSH Keypair with a 4096 Bit modulus (Call it KEY-SSH)
+crypto key generate rsa label KEY-SSH modulus 4096
+
+#Limit SSH to V2
+ip ssh version 2
+
+#Log SSH Events
+ip ssh logging events
+
+#Apply the new 4096 bit key to SSH
+ip ssh rsa keypair-name KEY-SSH
+
+#Set Diffie-Hellman minimum keysize to 4096
+ip ssh dh min size 4096
+
+#Set enable password  using the more secure scrypt encryption algorithm 
+#enable algorithm-type scrypt secret s3cr3t
+
+#Set usernames and access using the more secure scrypt algorithm
+username <<USERNAME>> privilege 15 algorithm-type scrypt secret <<PASSWORD>>
+
+#Enable Stronger cyphers and key-exchange algorithms
+ip ssh server algorithm mac hmac-sha1
+ip ssh server algorithm encryption aes256-cbc aes256-ctr
+ip ssh server algorithm kex diffie-hellman-group14-sha1
+ 
+ip ssh client algorithm mac hmac-sha1
+ip ssh client algorithm encryption aes256-cbc aes256-ctr
+ip ssh client algorithm kex diffie-hellman-group14-sha1
+
