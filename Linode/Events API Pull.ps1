@@ -1,5 +1,5 @@
 ﻿#Settings
-$linodeAPIKey = "APIKEY"
+$linodeAPIKey = "<<APIKEY>>"
 
 ##### Build Headers
 $headers=@{}
