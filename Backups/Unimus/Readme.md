@@ -1,4 +1,4 @@
-#Overview
+# Overview
 
 This script downloads files from either a SCP or SFTP source parses them based upon some rules and then uploads the files to Unimus
 Currently there is only one processor, that for APC network cards which drops the 5th line to remove the date generated to stop the generation date showing up as a diff in Unimus
@@ -19,24 +19,26 @@ The script then;
     Cleans up after itself
 
 
-##Requirements
+## Requirements
 
 You will need an API key from Unimus itself, the Unimus Server URL and a config file in CSV format (sample included here)
 
 Edit the first three lines as appropriate (if using the csv in the same file as the script the script will import it based upon line 3)
 
 The CSV requires a number of paramters
-|Name |The Name of the device, this is used for description in Unimus if needed and also address if no address is specified|
-|Address| The IP or DNS address that resolves to the device
-|Username|SCP/SFTP Username for the device|
-|Password|SCP/SFTP Password for the device|
-|Path|The Path to the config file, no leading /|
-|Protocol| SCP or SFTP|
-|Type| Text or Binary - this is how to handle the data for upload to Unimus|
-|Processor| Run any specific processing in the script|
+| Column | Notes |
+| ----------- | ----------- |
+| Name | The Name of the device, this is used for description in Unimus if needed and also address if no address is specified |
+| Address | The IP or DNS address that resolves to the device |
+| Username |SCP/SFTP Username for the device |
+| Password |SCP/SFTP Password for the device |
+| Path |The Path to the config file, no leading / |
+| Protocol | SCP or SFTP |
+| Type | Text or Binary - this is how to handle the data for upload to Unimus |
+| Processor | Run any specific processing in the script |
 
 There is currently only an APC NMC processor which removes the 5th line in the code and this is hard coded into the file and not modular
 
-##Notes
+## Notes
 
 SFTP and Binary support are only experimental, I have no use case for them and have not tested them personally, they should however work if I need them at some point I will test and verify them but this is not now.
