@@ -1,0 +1,22 @@
+<Configuration ID="cafa50c8-3306-4114-b76f-470f7cca664a">
+  <Info Description="Configuration - Office365 - Shared - No Outlook" />
+  <Add OfficeClientEdition="64" Channel="Current" SourcePath="<<CACHE_ADDRESS>>\O365" AllowCdnFallback="TRUE" MigrateArch="TRUE" ForceUpgrade="TRUE">
+    <Product ID="O365ProPlusRetail">
+      <Language ID="en-us" />
+      <ExcludeApp ID="Groove" />
+      <ExcludeApp ID="Lync" />
+      <ExcludeApp ID="Outlook" />
+      <ExcludeApp ID="Bing" />
+    </Product>
+  </Add>
+  <Property Name="SharedComputerLicensing" Value="1" />
+  <Property Name="FORCEAPPSHUTDOWN" Value="TRUE" />
+  <Property Name="DeviceBasedLicensing" Value="0" />
+  <Property Name="SCLCacheOverride" Value="0" />
+  <Updates Enabled="TRUE" />
+  <RemoveMSI />
+  <AppSettings>
+    <Setup Name="Company" Value="<<ORGANIZATION>>" />
+  </AppSettings>
+  <Display Level="Full" AcceptEULA="TRUE" />
+</Configuration>
