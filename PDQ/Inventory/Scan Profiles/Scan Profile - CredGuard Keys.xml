@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AdminArsenal.Export Code="PDQInventory" Name="PDQ Inventory" Version="19.3.365.0" MinimumVersion="14.0">
+  <ScanProfile>
+    <Collections type="list">
+      <ScanProfileCollection>
+        <CollectionId value="52" />
+        <ScanProfileId value="null" />
+      </ScanProfileCollection>
+      <ScanProfileCollection>
+        <CollectionId value="1337" />
+        <ScanProfileId value="null" />
+      </ScanProfileCollection>
+    </Collections>
+    <Scanners type="list">
+      <Scanner>
+        <ExcludePattern></ExcludePattern>
+        <Hive>HKEY_LOCAL_MACHINE</Hive>
+        <IncludePattern>SYSTEM\CurrentControlSet\Control\Lsa\**\</IncludePattern>
+        <RowLimit value="2500" />
+        <TypeName>Registry</TypeName>
+        <SourceScannerId value="33" />
+      </Scanner>
+      <Scanner>
+        <ExcludePattern></ExcludePattern>
+        <Hive>HKEY_LOCAL_MACHINE</Hive>
+        <IncludePattern>SOFTWARE\Policies\Microsoft\Windows\DeviceGuard\**\</IncludePattern>
+        <RowLimit value="2500" />
+        <TypeName>Registry</TypeName>
+        <SourceScannerId value="41" />
+      </Scanner>
+    </Scanners>
+    <Description>Windows CredGuard Keys</Description>
+    <ScanProfileId value="9" />
+    <Name>CredGuard Keys</Name>
+    <ScanAs>Admin</ScanAs>
+    <ScheduleTriggerSet name="ScheduleTriggers">
+      <Triggers type="list">
+        <ScheduleTrigger>
+          <ScanAge>7.00:00:00</ScanAge>
+          <TimeOfDayIsEnabled value="false" />
+          <Description></Description>
+          <EndDateTime>2023-02-20T00:00:00.0000000+11:00</EndDateTime>
+          <EndDateTimeIsEnabled value="false" />
+          <IsEnabled value="true" />
+          <StartDateTime>2023-02-13T00:00:00.0000000+11:00</StartDateTime>
+          <EnableTriggerStartTime>08:00:00</EnableTriggerStartTime>
+          <EnableTriggerEndTime>17:00:00</EnableTriggerEndTime>
+          <TriggerTimeFrameIsEnabled value="false" />
+          <TriggerType>Scan Age</TriggerType>
+        </ScheduleTrigger>
+      </Triggers>
+    </ScheduleTriggerSet>
+  </ScanProfile>
+</AdminArsenal.Export>

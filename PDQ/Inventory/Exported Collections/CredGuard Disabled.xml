@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AdminArsenal.Export Code="PDQInventory" Name="PDQ Inventory" Version="19.3.365.0" MinimumVersion="4.0">
+  <Collection>
+    <ReportDefinition name="Definition">
+      <RootFilter name="Filter">
+        <Comparison>All</Comparison>
+        <Filters type="list">
+          <GroupFilter>
+            <Comparison>All</Comparison>
+            <Filters type="list">
+              <ValueFilter>
+                <Table>Registry</Table>
+                <Column>Hive</Column>
+                <Comparison>Contains</Comparison>
+                <Value>HKEY_LOCAL_MACHINE</Value>
+              </ValueFilter>
+              <ValueFilter>
+                <Table>Registry</Table>
+                <Column>PathName</Column>
+                <Comparison>Contains</Comparison>
+                <Value>SYSTEM\CurrentControlSet\Control\Lsa</Value>
+              </ValueFilter>
+              <ValueFilter>
+                <Table>Registry</Table>
+                <Column>Name</Column>
+                <Comparison>Contains</Comparison>
+                <Value>LsaCfgFlags</Value>
+              </ValueFilter>
+              <ValueFilter>
+                <Table>Registry</Table>
+                <Column>EntryType</Column>
+                <Comparison>Contains</Comparison>
+                <Value>DWord</Value>
+              </ValueFilter>
+              <ValueFilter>
+                <Table>Registry</Table>
+                <Column>Value</Column>
+                <Comparison>Contains</Comparison>
+                <Value>0</Value>
+              </ValueFilter>
+            </Filters>
+          </GroupFilter>
+          <GroupFilter>
+            <Comparison>All</Comparison>
+            <Filters type="list">
+              <ValueFilter>
+                <Table>Registry</Table>
+                <Column>Hive</Column>
+                <Comparison>Contains</Comparison>
+                <Value>HKEY_LOCAL_MACHINE</Value>
+              </ValueFilter>
+              <ValueFilter>
+                <Table>Registry</Table>
+                <Column>PathName</Column>
+                <Comparison>Contains</Comparison>
+                <Value>SOFTWARE\Policies\Microsoft\Windows\DeviceGuard</Value>
+              </ValueFilter>
+              <ValueFilter>
+                <Table>Registry</Table>
+                <Column>Name</Column>
+                <Comparison>Contains</Comparison>
+                <Value>LsaCfgFlags</Value>
+              </ValueFilter>
+              <ValueFilter>
+                <Table>Registry</Table>
+                <Column>EntryType</Column>
+                <Comparison>Contains</Comparison>
+                <Value>DWord</Value>
+              </ValueFilter>
+              <ValueFilter>
+                <Table>Registry</Table>
+                <Column>Value</Column>
+                <Comparison>Contains</Comparison>
+                <Value>0</Value>
+              </ValueFilter>
+            </Filters>
+          </GroupFilter>
+        </Filters>
+      </RootFilter>
+      <ReportDefinitionTypeName>BasicReportDefinition</ReportDefinitionTypeName>
+      <Columns type="list">
+        <Column>
+          <Column>ComputerId</Column>
+          <Summary></Summary>
+          <Table>Computer</Table>
+          <Title></Title>
+        </Column>
+      </Columns>
+    </ReportDefinition>
+    <IsDrilldown value="true" />
+    <ImportedPath></ImportedPath>
+    <TypeName>DynamicCollection</TypeName>
+    <Created>2023-02-13T12:06:56.0000000+11:00</Created>
+    <Description></Description>
+    <Error></Error>
+    <Id value="1336" />
+    <LibraryCollectionId value="null" />
+    <IsEnabled value="true" />
+    <Modified>2023-02-13T12:07:18.0000000+11:00</Modified>
+    <Name>CredGuard Disabled</Name>
+    <ParentId value="52" />
+    <Path>Workstations\Windows 11\CredGuard Disabled</Path>
+    <Type>DynamicCollection</Type>
+    <Children type="list" />
+  </Collection>
+</AdminArsenal.Export>

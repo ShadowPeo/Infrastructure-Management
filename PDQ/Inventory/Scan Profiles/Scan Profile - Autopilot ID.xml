@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AdminArsenal.Export Code="PDQInventory" Name="PDQ Inventory" Version="19.3.365.0" MinimumVersion="19.0">
+  <ScanProfile>
+    <Collections type="list" />
+    <Scanners type="list">
+      <Scanner>
+        <ModifiedDate>2023-04-04T15:59:25.0000000+10:00</ModifiedDate>
+        <Name>AutoPilot Hardware ID</Name>
+        <UID>587fba3a0ccf43629904abe8728e73b0</UID>
+        <Script>if ( -not ( Get-PackageProvider -ListAvailable | Where-Object Name -eq "Nuget" ) ) {
+
+    $null = Install-PackageProvider "Nuget" -Force
+
+}
+
+Install-Script -Name Get-WindowsAutopilotInfo -Force
+
+&amp;"C:\Program Files\WindowsPowerShell\Scripts\Get-WindowsAutoPilotInfo.ps1"</Script>
+        <FileName></FileName>
+        <Parameters></Parameters>
+        <AdditionalFiles></AdditionalFiles>
+        <RowLimit value="100" />
+        <TypeName>PowerShell</TypeName>
+        <SourceScannerId value="54" />
+      </Scanner>
+    </Scanners>
+    <Description></Description>
+    <ScanProfileId value="15" />
+    <Name>Autopilot ID</Name>
+    <ScanAs>Admin</ScanAs>
+    <ScheduleTriggerSet name="ScheduleTriggers">
+      <Triggers type="list" />
+    </ScheduleTriggerSet>
+  </ScanProfile>
+</AdminArsenal.Export>
