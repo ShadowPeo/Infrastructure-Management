@@ -4,7 +4,7 @@ login block-for 600 attempts 10 within 60
 #Limit the password attempts per connection to 3
 ip ssh authentication-retries 3
 
-#Set the timeout for SSH (on the login screen) to 60 seconds
+#Set the timeout for SSH (on the login screen) to 60 Seconds
 ip ssh time-out 60
 
 #Log login failure
@@ -35,6 +35,24 @@ ip ssh logging events
 #Apply the new 4096 bit key to SSH
 ip ssh rsa keypair-name KEY-SSH
 
+#Force Keyboard authentication
+ip ssh server algorithm authentication keyboard
+
+#Set Server encryption algorithms - GCMP is best, and withing the CCMP models CTR is better than CBC so add it as fallback
+ip ssh server algorithm encryption aes256-gcm aes256-ctr
+
+#Set Server MAC algorithms - Use SHA2 not SHA1 or MD5
+ip ssh server algorithm mac hmac-sha2-512 hmac-sha2-256
+
+#Set Server key exchange algorithms - Diffie-Hellman Elliptic Curve algorithms for NIST P521 and P384 (NSA Reccomended)
+ip ssh server algorithm kex ecdh-sha2-nistp521 ecdh-sha2-nistp384
+
+#Set Server Public Key algorithms - These match the KEX algorithms above
+ip ssh server algorithm publickey ecdsa-sha2-nistp521 ecdsa-sha2-nistp384
+
+#Set Server Hostkey algorithms - Again specifiying SHA2
+ip ssh server algorithm hostkey rsa-sha2-512 rsa-sha2-256
+
 #Set Diffie-Hellman minimum keysize to 4096
 ip ssh dh min size 4096
 
@@ -44,7 +62,7 @@ ip ssh dh min size 4096
 #Set usernames and access using the more secure scrypt algorithm
 username <<USERNAME>> privilege 15 algorithm-type scrypt secret <<PASSWORD>>
 
-#Enable Stronger cyphers and key-exchange algorithms
+#Enable Stronger cyphers and key-exchange algorithms - THese are older do not use unless switches do not use settings above
 ip ssh server algorithm mac hmac-sha1
 ip ssh server algorithm encryption aes256-cbc aes256-ctr
 ip ssh server algorithm kex diffie-hellman-group14-sha1
